@@ -1,6 +1,6 @@
 // All requests go to our local Express proxy (server.js)
 // which adds the Hotelbeds signature server-side — avoiding CORS entirely.
-const PROXY = '/api'; // CRA's "proxy" field in package.json forwards this to localhost:4000
+const PROXY = 'https://hotelier-demo.onrender.com/api'; // CRA's "proxy" field in package.json forwards this to localhost:4000
 
 export async function searchHotels({
   destinationCode = 'LON',
@@ -19,8 +19,8 @@ export async function searchHotels({
     occupancies: [{ rooms, adults, children: 0 }],
     destination: { code: destinationCode },
     filter: {
-      ...(minRate     && { minRate }),
-      ...(maxRate     && { maxRate }),
+      ...(minRate && { minRate }),
+      ...(maxRate && { maxRate }),
       ...(minCategory && { minCategory, maxCategory: 5 }),
     },
     reviews: [{ type: 'HOTELBEDS', maxRate: 5, minReviewCount: 3 }],
