@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 const API_KEY = process.env.REACT_APP_HOTELBEDS_API_KEY;
-const SECRET  = process.env.REACT_APP_HOTELBEDS_SECRET;
+const SECRET = process.env.REACT_APP_HOTELBEDS_SECRET;
 const BASE_URL = 'https://api.test.hotelbeds.com';
 
 app.use(cors({ origin: 'http://localhost:3000' }));
@@ -20,10 +20,10 @@ function generateSignature() {
 
 function hotelbedsHeaders() {
   return {
-    'Api-key':        API_KEY,
-    'X-Signature':    generateSignature(),
-    'Accept':         'application/json',
-    'Content-Type':   'application/json',
+    'Api-key': API_KEY,
+    'X-Signature': generateSignature(),
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
   };
 }
 
@@ -80,4 +80,8 @@ app.get('/api/status', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Proxy server running at http://localhost:${PORT}`);
   console.log(`   API Key loaded: ${API_KEY ? API_KEY.substring(0, 8) + '...' : '❌ MISSING'}`);
+
+  app.get('/', (req, res) => {
+    res.send('Backend is running 🚀');
+  });
 });
