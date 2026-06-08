@@ -10,7 +10,7 @@ const API_KEY = process.env.REACT_APP_HOTELBEDS_API_KEY;
 const SECRET = process.env.REACT_APP_HOTELBEDS_SECRET;
 const BASE_URL = 'https://api.test.hotelbeds.com';
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors());
 app.use(express.json());
 
 function generateSignature() {
